@@ -18,6 +18,15 @@ import Buttons from './pages/UiElements/Buttons';
 import DefaultLayout from './layout/DefaultLayout';
 import { Provider } from 'react-redux';
 import store from './store/store';
+import AddCategory from './pages/Form/AddCategory';
+import SingleOrder from './pages/SingleOrder';
+import {io} from 'socket.io-client'
+
+export const socket = io("http://localhost:3000",{
+  auth : {
+    token : localStorage.getItem('token')
+  }
+})
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -43,7 +52,10 @@ function App() {
           element={
             <>
               <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <DefaultLayout>
+
               <ECommerce />
+              </DefaultLayout>
             </>
           }
         />
@@ -52,7 +64,10 @@ function App() {
           element={
             <>
               <PageTitle title="Calendar | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <DefaultLayout>
+
               <Calendar />
+              </DefaultLayout>
             </>
           }
         />
@@ -80,7 +95,22 @@ function App() {
           element={
             <>
               <PageTitle title="Form Layout | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <DefaultLayout>
+
               <FormLayout />
+              </DefaultLayout>
+            </>
+          }
+        />
+         <Route
+          path="/forms/add-category"
+          element={
+            <>
+              <PageTitle title="Form Layout | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <DefaultLayout>
+
+              <AddCategory />
+              </DefaultLayout>
             </>
           }
         />
@@ -89,7 +119,22 @@ function App() {
           element={
             <>
               <PageTitle title="Tables | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <DefaultLayout>
+
               <Tables />
+              </DefaultLayout>
+            </>
+          }
+        />
+         <Route
+          path="/order/:id"
+          element={
+            <>
+              <PageTitle title="Tables | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <DefaultLayout>
+
+             <SingleOrder />
+              </DefaultLayout>
             </>
           }
         />

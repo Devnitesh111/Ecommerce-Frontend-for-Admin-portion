@@ -1,4 +1,4 @@
-import { Status } from "./status";
+import { Status } from './status';
 
 export interface User{
     id : string, 
@@ -7,10 +7,7 @@ export interface User{
     created_at : string
 }
 
-interface Category{
-    id : string, 
-    categoryName : string
-}
+
 
 export interface Product{
     id? : string, 
@@ -57,12 +54,50 @@ export interface ItemDetails{
     id : string, 
     orderStatus : OrderStatus
 }
+export interface Category{
+    id : string, 
+    categoryName : string
+}
+
+export interface SingleOrder{
+    id: string,
+    quantity: number,
+    orderId: string,
+    createdAt : string,
+    Product: {
+        id: string,
+        productName: string,
+        productPrice: number,
+        productTotalStockQty: number,
+        productImageUrl: string,
+        categoryId:string,
+        Category: {
+            categoryName ? : string
+        }
+    },
+    Order: {
+        id:string,
+        phoneNumber: string,
+        shippingAddress: string,
+        totalAmount: number,
+        orderStatus: OrderStatus,
+        userId : string, 
+        Payment: {
+            paymentMethod: string,
+            paymentStatus: string
+        },
+
+    }
+}
 
 export interface InititalState{
     products : Product[], 
     users : User[],
     orders : OrderData[], 
     status : Status, 
-    singleProduct : Product | null
+    categories :Category[],
+    singleProduct : Product | null, 
+    singleOrder : SingleOrder[]
 
 }
+

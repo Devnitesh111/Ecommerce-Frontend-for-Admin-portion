@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { deleteOrder, fetchOrders } from '../../store/dataSlice';
+import { deleteOrder, fetchOrders, setDeleteProduct } from '../../store/dataSlice';
 import { OrderStatus } from '../../types/data';
+import { Link } from 'react-router-dom';
 
 
 const TableThree = () => {
@@ -12,10 +13,14 @@ const TableThree = () => {
   },[])
   const handleDelete  = (id:string)=>{
     dispatch(deleteOrder(id))
-    dispatch(fetchOrders())
   }
   return (
     <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+            <div className="py-6 px-4 md:px-6 xl:px-7.5">
+        <h4 className="text-xl font-semibold text-black dark:text-white">
+          Orders
+        </h4>
+      </div>
       <div className="max-w-full overflow-x-auto">
         <table className="w-full table-auto">
           <thead>
@@ -42,7 +47,7 @@ const TableThree = () => {
               <tr key={key}>
                 <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
                   <h5 className="font-medium text-black dark:text-white">
-                    {order.id}
+                  <Link to={`/order/${order.id}`}>{order.id}</Link>
                   </h5>
                   <p className="text-sm">${order.phoneNumber}</p>
                 </td>
